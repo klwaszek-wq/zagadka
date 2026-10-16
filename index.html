@@ -1,1 +1,340 @@
 
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tajna misja Martusi i Polusi</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      background: linear-gradient(135deg, #d8f3ff, #fce4ec, #fff3cd);
+      color: #29324b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 22px 14px;
+    }
+
+    .mission {
+      width: 100%;
+      max-width: 580px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 4px solid #ffffff;
+      border-radius: 28px;
+      padding: 28px 22px;
+      text-align: center;
+      box-shadow: 0 12px 35px rgba(65, 75, 120, 0.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stars {
+      font-size: 25px;
+      letter-spacing: 8px;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #ffe2a8;
+      color: #714b00;
+      border-radius: 30px;
+      padding: 8px 15px;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      color: #7153c6;
+      font-size: clamp(27px, 7vw, 38px);
+      line-height: 1.15;
+      margin: 18px 0 10px;
+    }
+
+    .intro {
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .emoji {
+      font-size: 62px;
+      margin: 14px 0;
+      animation: bounce 2s infinite;
+    }
+
+    .letter {
+      background: #f2efff;
+      border-radius: 20px;
+      padding: 20px 15px;
+      margin: 20px 0;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .riddle {
+      background: #fff6db;
+      border: 2px dashed #eab64d;
+      border-radius: 18px;
+      padding: 20px 13px;
+      margin: 20px 0;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .riddle strong {
+      color: #a35c00;
+    }
+
+    input {
+      width: 100%;
+      max-width: 330px;
+      padding: 15px;
+      border: 3px solid #c9bafa;
+      border-radius: 14px;
+      font-size: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      outline: none;
+      margin: 8px 0 12px;
+      background: #fff;
+    }
+
+    input:focus {
+      border-color: #7153c6;
+      box-shadow: 0 0 0 3px #7153c633;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      max-width: 330px;
+      margin: 0 auto;
+      border: none;
+      border-radius: 15px;
+      padding: 15px 18px;
+      background: #7153c6;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 0 #50389b;
+      transition: transform 0.15s, background 0.15s;
+    }
+
+    button:hover {
+      background: #5e42b0;
+    }
+
+    button:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 #50389b;
+    }
+
+    .hint {
+      color: #69718a;
+      font-size: 14px;
+      margin-top: 14px;
+    }
+
+    #error {
+      display: none;
+      color: #c62828;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    #success {
+      display: none;
+      margin-top: 25px;
+      animation: appear 0.7s ease-out;
+    }
+
+    .success-card {
+      background: linear-gradient(135deg, #d9fbe5, #e3f2ff);
+      border: 3px solid #8bd8a8;
+      border-radius: 22px;
+      padding: 22px 15px;
+    }
+
+    .success-card h2 {
+      color: #177245;
+      font-size: 27px;
+    }
+
+    .final-message {
+      font-size: 20px;
+      line-height: 1.7;
+      font-weight: bold;
+    }
+
+    .paw {
+      font-size: 43px;
+      margin: 8px;
+    }
+
+    .footer {
+      color: #8b8fa3;
+      font-size: 13px;
+      margin-top: 25px;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .confetti {
+      font-size: 30px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 380px) {
+      .mission {
+        padding: 22px 15px;
+      }
+
+      .letter, .riddle {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="mission">
+    <div class="stars">⭐ 🔎 ⭐</div>
+
+    <span class="badge">WIADOMOŚĆ ŚCIŚLE TAJNA</span>
+
+    <h1>Tajna misja<br>Martusi i Polusi!</h1>
+
+    <div class="emoji">🕵️‍♀️ 🕵️‍♀️</div>
+
+    <p class="intro">
+      <strong>Witajcie, Dzielne Agentki!</strong><br>
+      Udało Wam się odnaleźć tajny kod!
+      Ale nasza misja jeszcze się nie skończyła…
+    </p>
+
+    <div class="letter">
+      🐶 Nasz mały przyjaciel wciąż czeka na ratunek!<br>
+      Musicie rozwiązać kolejną zagadkę, aby dowiedzieć się,
+      gdzie szukać następnego tropu.<br><br>
+      <strong>Jesteście gotowe?</strong>
+    </div>
+
+    <div class="riddle">
+      🌧️ <strong>TAJEMNICZA ZAGADKA</strong> 🌧️<br><br>
+
+      Gdy deszcz na dworze i kałuże wielkie,<br>
+      wkładamy na nóżki buty gumowe, miękkie.<br>
+      Błoto i woda nie są im straszne,<br>
+      a po spacerze stoją przy drzwiach właśnie!<br><br>
+
+      <strong>Co to za buty?</strong> 👢
+    </div>
+
+    <p class="intro">
+      Wpiszcie rozwiązanie w tajnym polu poniżej!
+    </p>
+
+    <form id="answerForm">
+      <input
+        type="text"
+        id="answer"
+        placeholder="Wpiszcie odpowiedź..."
+        aria-label="Odpowiedź na zagadkę"
+        autocomplete="off"
+        autocapitalize="characters"
+        required
+      >
+
+      <button type="submit">🔐 ODSZYFRUJ ODPOWIEDŹ</button>
+    </form>
+
+    <p id="error" role="alert">
+      🤔 Hmm... To chyba nie to! Spróbujcie jeszcze raz,
+      Dzielne Agentki!
+    </p>
+
+    <section id="success" aria-live="polite">
+      <div class="success-card">
+        <div class="confetti">🎉 ⭐ 🎉 ⭐ 🎉</div>
+
+        <h2>BRAWO, BOHATERKI!</h2>
+
+        <p class="final-message">
+          Martusiu i Polusiu,<br>
+          ROZWIĄZAŁYŚCIE ZAGADKĘ! 🏆
+        </p>
+
+        <div class="paw">🐾 🐶 🐾</div>
+
+        <p class="final-message">
+          SZYBKO! SPRAWDŹCIE SWOJE KALOSZE!
+        </p>
+
+        <p class="intro">
+          Nasz przyjaciel może potrzebować pomocy!<br>
+          Być może ukrywa się właśnie tam! 👢
+        </p>
+
+        <p style="font-size: 18px; font-weight: bold; color: #177245;">
+          LOS PIESKA JEST W WASZYCH RĘKACH! ❤️
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      🔒 Tajna wiadomość dla wyjątkowych agentek
+    </div>
+  </main>
+
+  <script>
+    const form = document.getElementById("answerForm");
+    const input = document.getElementById("answer");
+    const error = document.getElementById("error");
+    const success = document.getElementById("success");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const answer = input.value
+        .trim()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toUpperCase();
+
+      if (answer === "KALOSZE") {
+        error.style.display = "none";
+        form.style.display = "none";
+        success.style.display = "block";
+
+        success.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      } else {
+        error.style.display = "block";
+        input.value = "";
+        input.focus();
+      }
+    });
+  </script>
+</body>
+</html>
+
